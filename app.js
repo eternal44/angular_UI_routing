@@ -24,11 +24,34 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 
   // ABOUT STATES & NESTED VIEWS
     .state('about', {
-      // url: '/about',
-      // templateUrl: 'partial-about.html'
+      url: '/about',
+      views: {
+        '': { templateUrl: 'partial-about.html' },
+        'columnOne@about': { template: 'Look I am a column!' },
+        'columnTwo@about': {
+          templateUrl: 'table-data.html',
+          controller: 'scotchController'
+        }
+      }
     });
 });
 
-
+routerApp.controller('scotchController', function($scope) {
+  $scope.message = 'test';
+  $scope.scotches = [
+    {
+      name: 'Macallan 12',
+      price: 50
+    },
+    {
+      name: 'Chivas',
+      price: 10000
+    },
+    {
+      name: 'Glendfiddich',
+      price: 30000
+    }
+  ];
+});
 
 
